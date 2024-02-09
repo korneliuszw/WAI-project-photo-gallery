@@ -1,0 +1,27 @@
+php_value include_path '/var/www/html'
+php_value upload_max_filesize 1M
+
+<Files *.php>
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+<Files composer*.json>
+    Order Allow,Deny
+    Deny from all
+</Files>
+<Files router.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
+<Files public/*>
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{REQUEST_FILENAME} !-f [OR]
+    RewriteCond %{REQUEST_URI} ^/images/private [NC]
+    RewriteRule ^(.*)$ router.php?action=/$1 [QSA]
+</IfModule>
