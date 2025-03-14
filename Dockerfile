@@ -12,4 +12,17 @@ RUN a2enmod rewrite
 
 COPY --from=composer:2.2 /usr/bin/composer /usr/bin/composer
 
+# Install Playwright dependencies
+RUN apt-get update && apt-get install -y wget gnupg
+RUN wget -qO - https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
+RUN echo "deb https://deb.nodesource.com/node_14.x stretch main" > /etc/apt/sources.list.d/nodesource.list
+RUN apt-get update && apt-get install -y nodejs
+RUN npm install -g playwright
+
+# Install pnpm
+RUN npm install -g pnpm
+
+# Set image path to environment variable TEST_IMAGE
+ENV TEST_IMAGE=/path/to/test/image
+
 EXPOSE 80 443
