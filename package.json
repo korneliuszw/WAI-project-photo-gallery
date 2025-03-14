@@ -1,0 +1,12 @@
+{
+  "name": "wai-project-photo-gallery",
+  "version": "1.0.0",
+  "description": "Photo gallery project with Playwright e2e tests",
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:install": "playwright install"
+  },
+  "devDependencies": {
+    "playwright": "^1.18.0"
+  }
+}
